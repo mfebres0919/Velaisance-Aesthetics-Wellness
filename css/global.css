@@ -286,6 +286,39 @@ ul {
 }
 
 /* ==========================================================================
+   Ink underline (brush-stroke SVG revealed left to right when in view)
+   ========================================================================== */
+.ink-mark {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.ink-mark__line {
+    position: absolute;
+    left: -2%;
+    bottom: -.16em;
+    width: 104%;
+    height: .26em;
+    overflow: visible;
+    fill: var(--rose-gold-deep);
+    pointer-events: none;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.1s var(--ease) .35s;
+}
+
+/* On dark backgrounds use the lighter rose gold */
+.hero .ink-mark__line,
+.about .ink-mark__line,
+.final-cta .ink-mark__line {
+    fill: var(--rose-gold-light);
+}
+
+.ink-mark.is-drawn .ink-mark__line {
+    clip-path: inset(0 0 0 0);
+}
+
+/* ==========================================================================
    Badge (pill label above headings)
    ========================================================================== */
 .badge {
@@ -457,6 +490,31 @@ ul {
 .button--ghost:hover {
     border-color: var(--white);
     color: var(--emerald-night);
+}
+
+/* Gentle bounce, then a 3s rest, on repeat */
+.button--bounce {
+    animation: button-bounce 4s var(--ease) 1.5s infinite;
+}
+
+.button--bounce:hover,
+.button--bounce:focus-visible {
+    animation-play-state: paused;
+}
+
+@keyframes button-bounce {
+    0%, 25%, 100% {
+        transform: translateY(0);
+    }
+    6% {
+        transform: translateY(-.65rem);
+    }
+    12% {
+        transform: translateY(0);
+    }
+    17% {
+        transform: translateY(-.3rem);
+    }
 }
 
 /* ==========================================================================

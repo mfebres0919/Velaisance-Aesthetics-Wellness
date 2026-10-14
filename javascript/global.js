@@ -109,3 +109,26 @@
     // Sections without a nav link (e.g. the final CTA) clear the highlight
     document.querySelectorAll("main > section[id]").forEach((section) => observer.observe(section));
 })();
+
+/* ==========================================================================
+   Global – draw ink underlines as they scroll into view
+   ========================================================================== */
+(function () {
+    const marks = document.querySelectorAll(".ink-mark");
+    if (!marks.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+        marks.forEach((mark) => mark.classList.add("is-drawn"));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-drawn");
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.6 });
+
+    marks.forEach((mark) => observer.observe(mark));
+})();
