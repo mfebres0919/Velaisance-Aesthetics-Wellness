@@ -69,6 +69,22 @@
     max-width: 60rem;
 }
 
+/* Keep the brand line on one row on small phones */
+.hero__content .badge {
+    padding-inline: .9rem;
+    font-size: .625rem;
+    letter-spacing: .1em;
+    white-space: nowrap;
+}
+
+@media (min-width: 600px) {
+    .hero__content .badge {
+        padding-inline: 1.1rem;
+        font-size: .75rem;
+        letter-spacing: .14em;
+    }
+}
+
 .hero__title {
     margin-top: 1.5rem;
     font-family: var(--font-display);
