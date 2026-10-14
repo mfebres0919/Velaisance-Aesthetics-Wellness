@@ -142,9 +142,9 @@
 
     const groups = [
         { selector: ".top-bar__inner, .site-header__inner", fade: true },
-        // Hero
-        { selector: ".hero__content > *" },
-        { selector: ".hero__footer" },
+        // Hero: slower, more cinematic entrance on page load
+        { selector: ".hero__content > *", start: 0.5, step: 0.3, duration: 1.8 },
+        { selector: ".hero__footer", start: 2.3, duration: 1.8 },
         // Services (carousels reveal as a whole so off-screen cards aren't left hidden)
         { selector: ".treatment-ribbon" },
         { selector: ".services__header > *" },
@@ -175,11 +175,13 @@
         });
     }, { threshold: 0.1, rootMargin: "0px 0px -4% 0px" });
 
-    groups.forEach(({ selector, fade }) => {
+    // start = delay before the first item, step = gap between siblings, duration = fade length (seconds)
+    groups.forEach(({ selector, fade, start = 0, step = 0.12, duration }) => {
         document.querySelectorAll(selector).forEach((el, index) => {
             el.classList.add("reveal");
             if (fade) el.classList.add("reveal--fade");
-            el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 0.12}s`);
+            el.style.setProperty("--reveal-delay", `${start + Math.min(index, 6) * step}s`);
+            if (duration) el.style.setProperty("--reveal-duration", `${duration}s`);
             observer.observe(el);
         });
     });
