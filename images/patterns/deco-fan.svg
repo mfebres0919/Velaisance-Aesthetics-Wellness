@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="60" viewBox="0 0 120 60" fill="none" stroke="#C49A6C" stroke-width="1">
+  <g id="fan">
+    <path d="M0 60a60 60 0 0 1 120 0"/>
+    <path d="M12 60a48 48 0 0 1 96 0"/>
+    <path d="M24 60a36 36 0 0 1 72 0"/>
+    <path d="M36 60a24 24 0 0 1 48 0"/>
+    <path d="M48 60a12 12 0 0 1 24 0"/>
+    <path d="M60 60V0M60 60 17.6 17.6M60 60l42.4-42.4M60 60 4.6 37M60 60l55.4-23M60 60 37 4.6M60 60 83 4.6"/>
+  </g>
+  <use href="#fan" x="-60" y="-30"/>
+  <use href="#fan" x="60" y="-30"/>
+</svg>
