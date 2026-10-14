@@ -34,11 +34,11 @@
    Variables
    ========================================================================== */
 :root {
-    /* Rose gold palette, tuned to the metallic rose gold in her logo
-       (brand sheet values were #C49A6C / #E5C8A6 / #B88D5B, which read as camel gold on screen) */
-    --rose-gold: #CB8E70;
-    --rose-gold-light: #EEC9B4;
-    --rose-gold-deep: #B47358;
+    /* Rose gold palette (brand)
+       Logo-matched alternative if she prefers: #CB8E70 / #EEC9B4 / #B47358 */
+    --rose-gold: #C49A6C;
+    --rose-gold-light: #E5C8A6;
+    --rose-gold-deep: #B88D5B;
 
     /* Emerald palette (brand) */
     --emerald: #21514B;
@@ -365,7 +365,7 @@ ul {
     text-transform: uppercase;
     color: var(--rose-gold-light);
     background-color: rgba(33, 81, 75, .45);
-    border: 1px solid rgba(238, 201, 180, .35);
+    border: 1px solid rgba(229, 200, 166, .35);
     border-radius: 999px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -381,7 +381,7 @@ ul {
 .badge--light {
     color: var(--emerald);
     background-color: rgba(255, 255, 255, .6);
-    border-color: rgba(203, 142, 112, .45);
+    border-color: rgba(196, 154, 108, .45);
 }
 
 /* ==========================================================================
@@ -628,7 +628,7 @@ ul {
 
     .top-bar__portal {
         padding-left: 1.1rem;
-        border-left: 1px solid rgba(238, 201, 180, .3);
+        border-left: 1px solid rgba(229, 200, 166, .3);
         text-transform: uppercase;
     }
 }
@@ -641,7 +641,7 @@ ul {
     top: 0;
     z-index: 100;
     background-color: var(--ivory);
-    border-bottom: 1px solid rgba(203, 142, 112, .35);
+    border-bottom: 1px solid rgba(196, 154, 108, .35);
     transition: box-shadow .35s var(--ease);
 }
 
@@ -729,7 +729,7 @@ ul {
 }
 
 .site-nav__list > li {
-    border-bottom: 1px solid rgba(203, 142, 112, .3);
+    border-bottom: 1px solid rgba(196, 154, 108, .3);
 }
 
 .site-nav__link {
@@ -1059,7 +1059,7 @@ ul {
     width: 2.75rem;
     height: 2.75rem;
     color: var(--rose-gold-light);
-    border: 1px solid rgba(238, 201, 180, .45);
+    border: 1px solid rgba(229, 200, 166, .45);
     border-radius: 50%;
     transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
 }
@@ -1077,7 +1077,7 @@ ul {
     font-size: 1.25rem;
     font-weight: 400;
     color: var(--white);
-    border-bottom: 1px solid rgba(238, 201, 180, .3);
+    border-bottom: 1px solid rgba(229, 200, 166, .3);
 }
 
 .site-footer__links {
@@ -1141,7 +1141,7 @@ ul {
     padding-block: 1.5rem 1.75rem;
     font-size: .75rem;
     background-color: rgba(0, 0, 0, .12);
-    border-top: 1px solid rgba(238, 201, 180, .25);
+    border-top: 1px solid rgba(229, 200, 166, .25);
 }
 
 .site-footer__bottom-inner {
