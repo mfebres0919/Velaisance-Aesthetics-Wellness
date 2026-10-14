@@ -82,3 +82,30 @@
     const year = document.getElementById("footer-year");
     if (year) year.textContent = new Date().getFullYear();
 })();
+
+/* ==========================================================================
+   Global – highlight the nav link for the section in view (scroll spy)
+   ========================================================================== */
+(function () {
+    const links = document.querySelectorAll(".site-nav [data-section]");
+    if (!links.length || !("IntersectionObserver" in window)) return;
+
+    const setCurrent = (id) => {
+        links.forEach((link) => {
+            const isCurrent = link.dataset.section === id;
+            link.classList.toggle("is-current", isCurrent);
+            if (isCurrent) link.setAttribute("aria-current", "true");
+            else link.removeAttribute("aria-current");
+        });
+    };
+
+    // A section is "current" once it crosses the middle band of the viewport
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) setCurrent(entry.target.id);
+        });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+
+    // Sections without a nav link (e.g. the final CTA) clear the highlight
+    document.querySelectorAll("main > section[id]").forEach((section) => observer.observe(section));
+})();

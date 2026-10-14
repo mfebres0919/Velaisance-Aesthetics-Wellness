@@ -262,6 +262,30 @@ ul {
 }
 
 /* ==========================================================================
+   Wobbling particles (animated SVG background; place inside an isolated section)
+   ========================================================================== */
+.particles {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    pointer-events: none;
+}
+
+.particles--gold {
+    background-image: url("../images/patterns/wobbling-particles-gold.svg");
+    opacity: .7;
+}
+
+/* Lighter rose gold so the dots glow on emerald */
+.particles--light {
+    background-image: url("../images/patterns/wobbling-particles-light.svg");
+    opacity: .6;
+}
+
+/* ==========================================================================
    Badge (pill label above headings)
    ========================================================================== */
 .badge {
@@ -596,8 +620,8 @@ ul {
     inset: var(--nav-top, var(--header-height)) 0 0 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 2rem;
+    justify-content: flex-start;
+    gap: 2.25rem;
     padding: 2rem var(--gutter) 2.5rem;
     background-color: var(--ivory);
     overflow-y: auto;
@@ -639,13 +663,24 @@ ul {
     transform: rotate(180deg);
 }
 
+/* Mobile accordion: animates height + fade instead of snapping open */
 .site-nav__dropdown {
-    display: none;
-    padding-bottom: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-.35rem);
+    transition: max-height .45s var(--ease), opacity .35s var(--ease), transform .35s var(--ease), padding .45s var(--ease);
 }
 
 .site-nav__item--dropdown.is-open .site-nav__dropdown {
-    display: block;
+    max-height: 22rem;
+    padding-bottom: 1rem;
+    opacity: 1;
+    transform: none;
+}
+
+.site-nav__link.is-current {
+    color: var(--rose-gold-deep);
 }
 
 .site-nav__dropdown a {
@@ -770,17 +805,19 @@ ul {
     }
 
     .site-nav__link:hover,
-    .site-nav__link[aria-current="page"] {
+    .site-nav__link.is-current {
         color: var(--emerald);
     }
 
     .site-nav__link:hover::after,
-    .site-nav__link[aria-current="page"]::after {
+    .site-nav__link.is-current::after {
         transform: scaleX(1);
     }
 
     .site-nav__dropdown {
         display: block;
+        max-height: none;
+        overflow: visible;
         position: absolute;
         top: calc(100% + 1.4rem);
         left: 50%;

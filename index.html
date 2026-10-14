@@ -59,9 +59,9 @@
 
             <nav class="site-nav" id="site-nav" aria-label="Main">
                 <ul class="site-nav__list">
-                    <li><a class="site-nav__link" href="index.html" aria-current="page">Home</a></li>
+                    <li><a class="site-nav__link is-current" href="#hero" data-section="hero" aria-current="true">Home</a></li>
                     <li class="site-nav__item--dropdown">
-                        <button class="site-nav__link site-nav__toggle" type="button" aria-expanded="false" aria-controls="services-menu">
+                        <button class="site-nav__link site-nav__toggle" type="button" data-section="services" aria-expanded="false" aria-controls="services-menu">
                             Services
                             <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></svg>
                         </button>
@@ -74,12 +74,12 @@
                             <li><a href="#services">The Elixir Vanity</a></li>
                         </ul>
                     </li>
-                    <li><a class="site-nav__link" href="#about">Meet the Nurse Alchemist</a></li>
-                    <li><a class="site-nav__link" href="#reviews">Reviews</a></li>
-                    <li><a class="site-nav__link" href="#contact">Contact</a></li>
+                    <li><a class="site-nav__link" href="#about" data-section="about">Meet the Nurse Alchemist</a></li>
+                    <li><a class="site-nav__link" href="#reviews" data-section="reviews">Reviews</a></li>
+                    <li><a class="site-nav__link" href="#contact" data-section="contact">Contact</a></li>
                 </ul>
                 <div class="site-nav__mobile-extras">
-                    <a class="button button--primary" href="#consultation">Book a Consultation</a>
+                    <a class="button button--emerald" href="#consultation">Book a Consultation</a>
                     <a class="site-nav__mobile-phone" href="tel:+16282528115">Call 628-252-8115</a>
                 </div>
             </nav>
@@ -129,7 +129,7 @@
             <div class="hero__inner container">
                 <div class="hero__content">
                     <p class="badge"><span class="badge__dot" aria-hidden="true"></span>Luxury Med Spa &middot; Walnut Creek, CA</p>
-                    <h1 class="hero__title" id="hero-title">Where Science Meets <em>Sacred Self-Care</em></h1>
+                    <h1 class="hero__title" id="hero-title">Where Science Meets <em>Sacred Self-Care<svg class="hero__underline" aria-hidden="true" viewBox="0 0 400 24" preserveAspectRatio="none"><defs><linearGradient id="underline-gold" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#B88D5B"/><stop offset=".5" stop-color="#E5C8A6"/><stop offset="1" stop-color="#C49A6C"/></linearGradient></defs><path d="M4 16C70 7 150 4 230 7c58 2 112 6 166 3" pathLength="1"/><path d="M60 21c80-6 170-8 280-5" pathLength="1"/></svg></em></h1>
                     <p class="hero__text">
                         Luxury aesthetics and personalized wellness led by Dr.&nbsp;Synedra Coleman, DNP&#8209;C,&nbsp;FNP,
                         designed to restore your confidence, vitality, and natural radiance.
@@ -416,7 +416,7 @@
 
             <span class="about__pattern" aria-hidden="true"></span>
             <span class="about__watermark" aria-hidden="true"></span>
-
+            <span class="particles particles--light" aria-hidden="true"></span>
             <div class="about__inner container">
                 <!-- Portrait -->
                 <div class="about__visual">
@@ -744,11 +744,13 @@
 
         <!-- ============ Contact ============ -->
         <section class="contact" id="contact" aria-labelledby="contact-title">
+            <span class="particles particles--gold" aria-hidden="true"></span>
+
             <div class="contact__inner container">
                 <div class="contact__visual">
                     <picture class="contact__image">
-                        <source srcset="images/contact/contact-serum.webp" type="image/webp">
-                        <img src="images/contact/contact-serum.jpg" alt="Woman applying a facial serum with a dropper" width="720" height="900" loading="lazy" decoding="async">
+                        <source srcset="images/contact/contact-room.webp" type="image/webp">
+                        <img src="images/contact/contact-room.jpg" alt="Velaisance treatment suite with a plush treatment bed and LED therapy lamp" width="720" height="900" loading="lazy" decoding="async">
                     </picture>
 
                     <div class="contact__details">
