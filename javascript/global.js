@@ -132,3 +132,55 @@
 
     marks.forEach((mark) => observer.observe(mark));
 })();
+
+/* ==========================================================================
+   Global – fade components in as they scroll into view
+   Siblings in the same group are staggered so content flows in one by one.
+   ========================================================================== */
+(function () {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+
+    const groups = [
+        { selector: ".top-bar__inner, .site-header__inner", fade: true },
+        // Hero
+        { selector: ".hero__content > *" },
+        { selector: ".hero__footer" },
+        // Services (carousels reveal as a whole so off-screen cards aren't left hidden)
+        { selector: ".treatment-ribbon" },
+        { selector: ".services__header > *" },
+        { selector: ".services__carousel" },
+        // About
+        { selector: ".about__visual" },
+        { selector: ".about__content > *" },
+        { selector: ".about__stats" },
+        // Reviews
+        { selector: ".reviews__header > *" },
+        { selector: ".reviews__google, .reviews__carousel, .reviews__footer" },
+        // Final CTA
+        { selector: ".final-cta__content > *" },
+        { selector: ".trust-ribbon" },
+        // Contact (the success message animates on its own)
+        { selector: ".contact__visual" },
+        { selector: ".contact__panel > :not(.contact-success)" },
+        // Footer
+        { selector: ".site-footer__inner > *" },
+        { selector: ".site-footer__bottom", fade: true },
+    ];
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -4% 0px" });
+
+    groups.forEach(({ selector, fade }) => {
+        document.querySelectorAll(selector).forEach((el, index) => {
+            el.classList.add("reveal");
+            if (fade) el.classList.add("reveal--fade");
+            el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 0.12}s`);
+            observer.observe(el);
+        });
+    });
+})();
