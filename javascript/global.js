@@ -24,6 +24,8 @@
         menuToggle.setAttribute("aria-expanded", String(open));
         menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
         document.body.classList.toggle("is-menu-open", open);
+        // Freeze the smooth-scrolled page behind the open menu
+        if (window.lenis) open ? window.lenis.stop() : window.lenis.start();
     };
 
     menuToggle.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
