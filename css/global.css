@@ -104,7 +104,8 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-body.is-menu-open {
+/* Lock page scroll on <html> (not <body>) so the sticky header stays put */
+html.is-menu-open {
     overflow: hidden;
 }
 
@@ -346,8 +347,11 @@ ul {
     translate: 0 0;
 }
 
-/* Header elements just fade (no slide) */
-.reveal--fade {
+/* Header elements just fade (no slide). Translate must stay `none` here: any value,
+   even 0, turns the header into the containing block for the fixed mobile menu
+   and squashes the menu to the header's height. */
+.reveal--fade,
+.reveal--fade.is-visible {
     translate: none;
 }
 
