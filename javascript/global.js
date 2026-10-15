@@ -188,3 +188,51 @@
         });
     });
 })();
+
+/* ==========================================================================
+   Global – booking modal
+   Any [data-booking] link opens the Prospyr booking page in a popup.
+   The iframe loads on first open so it never slows down the page.
+   Close with the X, Esc (native <dialog>), or by clicking the backdrop.
+   ========================================================================== */
+(function () {
+    const modal = document.getElementById("booking-modal");
+    if (!modal || typeof modal.showModal !== "function") return; // old browsers keep the new-tab fallback
+
+    const frame = modal.querySelector(".booking-modal__frame");
+    const closeButton = modal.querySelector(".booking-modal__close");
+    let lastTrigger = null;
+
+    frame.addEventListener("load", () => modal.classList.add("is-loaded"));
+
+    const open = (trigger) => {
+        lastTrigger = trigger;
+        if (!frame.src) frame.src = frame.dataset.src;
+        modal.showModal();
+        document.documentElement.classList.add("is-booking-open");
+        if (window.lenis) window.lenis.stop();
+        closeButton.focus();
+    };
+
+    const close = () => modal.close();
+
+    modal.addEventListener("close", () => {
+        document.documentElement.classList.remove("is-booking-open");
+        if (window.lenis) window.lenis.start();
+        if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+    });
+
+    document.querySelectorAll("[data-booking]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            open(link);
+        });
+    });
+
+    closeButton.addEventListener("click", close);
+
+    // Clicks on the backdrop land on the <dialog> itself, outside the panel
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) close();
+    });
+})();

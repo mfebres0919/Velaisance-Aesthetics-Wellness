@@ -2184,12 +2184,6 @@
     opacity: .85;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .contact-form__note {
     margin-top: .9rem;
     font-size: .75rem;
