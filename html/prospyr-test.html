@@ -40,8 +40,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    html.is-shop-open { overflow: hidden; }
-
     img, svg { display: block; }
 
     button { font: inherit; cursor: pointer; }
@@ -335,6 +333,15 @@
       stroke-linejoin: round;
     }
 
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
     :focus-visible {
       outline: 2px solid var(--rose-gold);
       outline-offset: 3px;
@@ -347,264 +354,12 @@
       color: var(--ink-soft);
     }
 
-    /* ==========================================================================
-       Shop popup: native <dialog> holding the Prospyr product page.
-       Branded header bar, loading state, then the store fades in.
-       Full screen on phones, a centred panel on larger screens.
-       ========================================================================== */
-    .shop-modal {
-      width: 100%;
-      max-width: none;
-      height: 100%;
-      max-height: none;
-      margin: 0;
-      padding: 0;
-      color: var(--emerald);
-      background: transparent;
-      border: 0;
-    }
-
-    .shop-modal::backdrop {
-      background: rgba(33, 81, 75, 0.72);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
-    }
-
-    .shop-modal[open] {
-      display: flex;
-      animation: shop-fade 0.35s var(--ease);
-    }
-
-    .shop-modal[open] .shop-panel {
-      animation: shop-rise 0.45s var(--ease);
-    }
-
-    .shop-panel {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: var(--ivory);
-    }
-
-    .shop-modal svg {
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .shop-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.75rem 1rem;
-      padding-top: max(0.75rem, env(safe-area-inset-top));
-      background: var(--ivory);
-      border-bottom: 1px solid rgba(196, 154, 108, 0.4);
-    }
-
-    .shop-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      min-width: 0;
-    }
-
-    /* Her VA monogram beside the title */
-    .shop-mark {
-      flex-shrink: 0;
-      width: 2.5rem;
-    }
-
-    .shop-mark img {
-      width: 100%;
-      height: auto;
-    }
-
-    .shop-title {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 400;
-      line-height: 1.1;
-    }
-
-    .shop-subtitle {
-      display: none;
-      margin-top: 0.2rem;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.6875rem;
-      letter-spacing: 0.08em;
-      color: var(--ink-soft);
-    }
-
-    .shop-subtitle svg {
-      width: 0.85rem;
-      height: 0.85rem;
-      color: var(--rose-gold-deep);
-    }
-
-    .shop-actions {
-      display: flex;
-      flex-shrink: 0;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .shop-newtab {
-      display: none;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.5rem 0.9rem;
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--emerald);
-      border: 1px solid rgba(196, 154, 108, 0.5);
-      border-radius: 999px;
-      transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
-    }
-
-    .shop-newtab:hover {
-      background: var(--cream);
-      border-color: var(--rose-gold);
-    }
-
-    .shop-newtab svg {
-      width: 0.875rem;
-      height: 0.875rem;
-    }
-
-    .shop-close {
-      display: grid;
-      place-items: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      color: var(--white);
-      background: var(--emerald);
-      border: 0;
-      border-radius: 50%;
-      transition: background-color 0.3s var(--ease), transform 0.3s var(--ease);
-    }
-
-    .shop-close:hover {
-      background: var(--emerald-mid);
-      transform: rotate(90deg);
-    }
-
-    .shop-close svg {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-
-    .shop-body {
-      position: relative;
-      flex: 1;
-      min-height: 0;
-      background: var(--white);
-    }
-
-    .shop-frame {
-      position: relative;
-      z-index: 1;
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      opacity: 0;
-      transition: opacity 0.5s var(--ease);
-    }
-
-    .shop-modal.is-loaded .shop-frame {
-      opacity: 1;
-    }
-
-    /* Loading state: spinning rose-gold ring around the monogram */
-    .shop-loader {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      font-size: 0.875rem;
-      color: var(--ink-soft);
-    }
-
-    .shop-spinner {
-      width: 2.75rem;
-      height: 2.75rem;
-      border: 2px solid rgba(196, 154, 108, 0.3);
-      border-top-color: var(--rose-gold);
-      border-radius: 50%;
-      animation: shop-spin 0.8s linear infinite;
-    }
-
-    /* Trust strip along the bottom of the popup */
-    .shop-footer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.4rem 1.25rem;
-      padding: 0.6rem 1rem;
-      padding-bottom: max(0.6rem, env(safe-area-inset-bottom));
-      font-size: 0.6875rem;
-      letter-spacing: 0.08em;
-      color: var(--rose-gold-light);
-      background: var(--emerald);
-    }
-
-    .shop-footer span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .shop-footer svg {
-      width: 0.85rem;
-      height: 0.85rem;
-    }
-
-    @keyframes shop-fade { from { opacity: 0; } }
-    @keyframes shop-rise { from { transform: translateY(1.5rem); } }
-    @keyframes shop-spin { to { transform: rotate(360deg); } }
-
     @media (prefers-reduced-motion: reduce) {
-      .shop-modal[open],
-      .shop-modal[open] .shop-panel,
-      .shop-spinner { animation: none; }
-      .shop-frame,
       .shop-btn::before { transition: none; }
     }
 
     @media (min-width: 768px) {
       main { padding: 6rem 2.5rem; }
-
-      .shop-modal {
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-      }
-
-      .shop-panel {
-        max-width: 68rem;
-        height: min(52rem, 100%);
-        border: 1px solid var(--rose-gold);
-        border-radius: 1.5rem;
-        box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.6);
-      }
-
-      .shop-header { padding: 1rem 1.25rem 1rem 1.5rem; }
-
-      .shop-subtitle,
-      .shop-newtab { display: inline-flex; }
     }
   </style>
 </head>
@@ -635,12 +390,12 @@
           <p>A temporary product created to test the Prospyr shopping experience.</p>
           <span class="price">$0.00</span>
 
-          <!-- data-shop holds the Prospyr product link; the href is the no-JavaScript fallback -->
+          <!-- Opens the product on her Prospyr shop in a new tab. Prospyr's security check (Vercel) fails inside an embedded popup (code 705), so the shop can't be shown in a modal. -->
           <a class="shop-btn" href="https://velaisance-vanity.store.prospyrmed.com/products/test-product-do-not-purchase/f635dd05-ea99-49a6-a008-eac07a174c42"
              target="_blank" rel="noopener"
-             data-shop="https://velaisance-vanity.store.prospyrmed.com/products/test-product-do-not-purchase/f635dd05-ea99-49a6-a008-eac07a174c42"
              data-product="Test Product">
             Shop Now
+            <span class="visually-hidden">(opens her secure shop in a new tab)</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           </a>
         </div>
@@ -657,12 +412,12 @@
           <p>A temporary product created to test the Prospyr shopping experience.</p>
           <span class="price">$0.00</span>
 
-          <!-- data-shop holds the Prospyr product link; the href is the no-JavaScript fallback -->
+          <!-- Opens the product on her Prospyr shop in a new tab. Prospyr's security check (Vercel) fails inside an embedded popup (code 705), so the shop can't be shown in a modal. -->
           <a class="shop-btn" href="https://velaisance-vanity.store.prospyrmed.com/products/test-product-2-do-not-purchase/6ffe949e-68e7-4a6b-b324-c63dba48a959"
              target="_blank" rel="noopener"
-             data-shop="https://velaisance-vanity.store.prospyrmed.com/products/test-product-2-do-not-purchase/6ffe949e-68e7-4a6b-b324-c63dba48a959"
              data-product="Test Product 2">
             Shop Now
+            <span class="visually-hidden">(opens her secure shop in a new tab)</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           </a>
         </div>
@@ -676,132 +431,29 @@
       <p>Run these on a desktop browser and on an iPhone (Safari) and an Android phone (Chrome). Checks are saved in this browser only.</p>
 
       <div class="test-group">
-        <h3>1. Cart persistence</h3>
+        <h3>Result: popup checkout</h3>
         <ul class="test-list">
-          <li><label><input type="checkbox" data-test="cart-1"><span>Open Test Product, add it to the cart.</span></label></li>
-          <li><label><input type="checkbox" data-test="cart-2"><span>Close the popup, then open Test Product 2. Is Test Product still in the cart?</span></label></li>
-          <li><label><input type="checkbox" data-test="cart-3"><span>Add Test Product 2. Does the cart now show both items?</span></label></li>
-          <li><label><input type="checkbox" data-test="cart-4"><span>Refresh this page, open either product. Is the cart still there?</span></label></li>
+          <li><label><input type="checkbox" data-test="popup-blocked" checked><span>Shop inside a popup fails on Safari, Chrome and Edge (Prospyr security check, code 705). Shop Now now opens her shop in a new tab.</span></label></li>
         </ul>
       </div>
 
       <div class="test-group">
-        <h3>2. Checkout inside the popup</h3>
+        <h3>Cart and checkout in the new tab</h3>
         <ul class="test-list">
-          <li><label><input type="checkbox" data-test="co-1"><span>Go to checkout from inside the popup. Does the checkout page load (not blank, no error)?</span></label></li>
-          <li><label><input type="checkbox" data-test="co-2"><span>Can you type in every field, including on a phone keyboard?</span></label></li>
-          <li><label><input type="checkbox" data-test="co-3"><span>Do the payment fields (card number etc.) appear and accept typing? Stop here: do not pay.</span></label></li>
-          <li><label><input type="checkbox" data-test="co-4"><span>Do any steps (login, Apple Pay, 3-D Secure) try to open a new window or get stuck?</span></label></li>
+          <li><label><input type="checkbox" data-test="tab-1"><span>Shop Now on Test Product opens her shop and the product loads.</span></label></li>
+          <li><label><input type="checkbox" data-test="tab-2"><span>Add it to the cart, come back to this page, Shop Now on Test Product 2. Are both in the cart?</span></label></li>
+          <li><label><input type="checkbox" data-test="tab-3"><span>Checkout loads and the fields accept typing on a phone. Stop there: do not pay.</span></label></li>
         </ul>
       </div>
 
       <p class="test-env" id="testEnv"></p>
     </section>
 
-    <p class="test-note">Development test only. Please do not place an order.</p>
+    <p class="test-note">Development test only. Please do not place an order. Shop Now opens the product on her secure Prospyr shop in a new tab.</p>
   </main>
 
-  <!-- ===== Shop popup (Prospyr) ===== -->
-  <dialog class="shop-modal" id="shopModal" aria-labelledby="shopTitle">
-    <div class="shop-panel">
-      <header class="shop-header">
-        <div class="shop-brand">
-          <picture class="shop-mark" aria-hidden="true">
-            <source type="image/webp" srcset="../images/brand/velaisance-monogram.webp">
-            <img src="../images/brand/velaisance-monogram.png" alt="" width="192" height="180">
-          </picture>
-          <div>
-            <h2 class="shop-title" id="shopTitle">The Elixir Vanity</h2>
-            <p class="shop-subtitle">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-              Secure checkout &middot; <span id="shopProduct">Velaisance</span>
-            </p>
-          </div>
-        </div>
-        <div class="shop-actions">
-          <a class="shop-newtab" id="shopNewTab" href="#" target="_blank" rel="noopener">
-            Open in new tab
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
-          <button class="shop-close" id="shopClose" type="button" aria-label="Close shop">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-          </button>
-        </div>
-      </header>
-
-      <div class="shop-body">
-        <div class="shop-loader" aria-hidden="true">
-          <span class="shop-spinner"></span>
-          <p>Opening The Elixir Vanity&hellip;</p>
-        </div>
-        <iframe class="shop-frame" id="shopFrame" title="The Elixir Vanity shop" allow="payment"></iframe>
-      </div>
-
-      <footer class="shop-footer">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Nurse practitioner&ndash;curated</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure checkout</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9 12 4l9 5v11H3z"/><path d="M7 20v-7h10v7"/></svg>Professional-grade skincare</span>
-      </footer>
-    </div>
-  </dialog>
 
   <script>
-    /* Shop popup: any [data-shop] link opens its Prospyr product page here.
-       One store window is kept alive for the whole visit: closing the popup
-       only hides it, and opening another product navigates the same window.
-       That way, if Prospyr keeps the cart in the page, it isn't wiped by us.
-       Closes with the X, Esc (native <dialog>), or a click on the backdrop. */
-    (function () {
-      const modal = document.getElementById("shopModal");
-      if (!modal || typeof modal.showModal !== "function") return; // old browsers keep the new-tab link
-
-      const frame = document.getElementById("shopFrame");
-      const closeBtn = document.getElementById("shopClose");
-      const newTab = document.getElementById("shopNewTab");
-      const productName = document.getElementById("shopProduct");
-      let lastTrigger = null;
-      let currentUrl = "";
-
-      frame.addEventListener("load", () => {
-        if (frame.src) modal.classList.add("is-loaded");
-      });
-
-      function open(link) {
-        lastTrigger = link;
-        const url = link.dataset.shop;
-        // Only reload the store when switching products; reopening the same one keeps its state
-        if (url !== currentUrl) {
-          modal.classList.remove("is-loaded");
-          frame.src = url;
-          currentUrl = url;
-        }
-        newTab.href = url;
-        productName.textContent = link.dataset.product || "Velaisance";
-        modal.showModal();
-        document.documentElement.classList.add("is-shop-open");
-        closeBtn.focus();
-      }
-
-      modal.addEventListener("close", () => {
-        document.documentElement.classList.remove("is-shop-open");
-        lastTrigger?.focus({ preventScroll: true });
-      });
-
-      document.querySelectorAll("[data-shop]").forEach((link) => {
-        link.addEventListener("click", (event) => {
-          event.preventDefault();
-          open(link);
-        });
-      });
-
-      closeBtn.addEventListener("click", () => modal.close());
-
-      // Clicks on the backdrop land on the <dialog> itself, outside the panel
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) modal.close();
-      });
-    })();
-
     /* Dev-only: remember checklist ticks in this browser and show which browser is being tested */
     (function () {
       const KEY = "velaisance-prospyr-test";
