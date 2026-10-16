@@ -131,6 +131,75 @@
       .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
+
+    /* ---------- Newsletter (Prospyr lead form embed) ---------- */
+    .newsletter {
+      max-width: 54rem;
+      margin: 4rem auto 0;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(196, 154, 108, 0.45);
+      border-radius: 1.25rem;
+      box-shadow: 0 24px 50px -32px rgba(33, 81, 75, 0.5);
+    }
+
+    .newsletter-intro {
+      padding: 2.25rem 1.5rem 2rem;
+      color: var(--white);
+      text-align: center;
+      background:
+        radial-gradient(ellipse 70% 120% at 50% 0%, rgba(54, 119, 107, 0.9), transparent 70%),
+        var(--emerald);
+      border-bottom: 2px solid var(--rose-gold);
+    }
+
+    .newsletter-intro .eyebrow {
+      color: var(--rose-gold-light);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(229, 200, 166, 0.45);
+    }
+
+    .newsletter-intro h2 {
+      margin-top: 1rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400;
+    }
+
+    .newsletter-intro p {
+      max-width: 30rem;
+      margin: 0.75rem auto 0;
+      font-size: 0.9375rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* The Prospyr form lives in a frame; its own styling comes from Prospyr */
+    .newsletter-form {
+      position: relative;
+      min-height: 600px;
+      background: var(--white);
+    }
+
+    .newsletter-form iframe {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 600px;
+      border: 0;
+    }
+
+    .newsletter-loading {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 0.875rem;
+      color: var(--ink-soft);
+    }
+
     /* ---------- Test checklist (dev only) ---------- */
     .test-panel {
       max-width: 54rem;
@@ -425,6 +494,24 @@
     </div>
 
 
+    <!-- Newsletter signup: Prospyr lead form embed (entries show in Prospyr under Lead Forms > Entries) -->
+    <section class="newsletter" aria-labelledby="newsletterTitle">
+      <div class="newsletter-intro">
+        <span class="eyebrow">The Velaisance List</span>
+        <h2 id="newsletterTitle">Join for glow notes &amp; first access</h2>
+        <p>Exclusive offers, new arrivals in The Elixir Vanity, and early access to appointment openings.</p>
+      </div>
+      <div class="newsletter-form">
+        <p class="newsletter-loading" aria-hidden="true">Loading the signup form&hellip;</p>
+        <iframe
+          src="https://app.prospyrmed.com/leadform/81903565-4fc7-4170-ae8a-7386dd38a85b"
+          title="Join the Velaisance newsletter"
+          width="100%"
+          height="600"
+          loading="lazy"></iframe>
+      </div>
+    </section>
+
     <!-- Dev-only checklist for the Prospyr popup test. Remove before launch. -->
     <section class="test-panel" aria-labelledby="testTitle">
       <h2 id="testTitle">Prospyr popup test checklist</h2>
@@ -443,6 +530,16 @@
           <li><label><input type="checkbox" data-test="tab-1"><span>Shop Now on Test Product opens her shop and the product loads.</span></label></li>
           <li><label><input type="checkbox" data-test="tab-2"><span>Add it to the cart, come back to this page, Shop Now on Test Product 2. Are both in the cart?</span></label></li>
           <li><label><input type="checkbox" data-test="tab-3"><span>Checkout loads and the fields accept typing on a phone. Stop there: do not pay.</span></label></li>
+        </ul>
+      </div>
+
+      <div class="test-group">
+        <h3>Newsletter (lead form)</h3>
+        <ul class="test-list">
+          <li><label><input type="checkbox" data-test="lead-1"><span>The signup form loads inside the newsletter box (not blank, no error) on desktop and phone.</span></label></li>
+          <li><label><input type="checkbox" data-test="lead-2"><span>Submit a test with your own name and email. Does it show a success message?</span></label></li>
+          <li><label><input type="checkbox" data-test="lead-3"><span>In Prospyr, go to Lead Forms &rarr; Entries. Is your test entry recorded?</span></label></li>
+          <li><label><input type="checkbox" data-test="lead-4"><span>Does the whole form fit in the box, or does it cut off and need scrolling inside?</span></label></li>
         </ul>
       </div>
 
