@@ -1,0 +1,488 @@
+/* ==========================================================================
+   Service details pages (html/service-*.html), mobile first.
+   Banner, then the services list beside the details, then FAQs.
+   Header, final CTA and footer styles live in global.css.
+   ========================================================================== */
+
+/* ---------- Layout: details first on phones, services list after ---------- */
+.sd {
+    padding-block: 3.5rem calc(clamp(2.5rem, 7vw, 6rem) + 4rem);
+    background-color: var(--ivory);
+}
+
+.sd__inner {
+    display: grid;
+    gap: 3rem;
+}
+
+/* Phones: the rows dissolve into one column (details, FAQ, services, hours) */
+.sd__row {
+    display: contents;
+}
+
+/* Phones: details, FAQ, then the services list and hours */
+.sd-aside {
+    order: 3;
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+}
+
+.sd-main {
+    order: 1;
+    min-width: 0;
+}
+
+.sd .faq {
+    order: 2;
+    min-width: 0;
+}
+
+.sd-hours {
+    order: 4;
+}
+
+/* ---------- Services list ---------- */
+.sd-nav {
+    padding: 1.5rem;
+    background-color: var(--cream);
+    border: 1px solid rgba(196, 154, 108, .3);
+    border-radius: 1.25rem;
+}
+
+.sd-nav__title {
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--emerald);
+}
+
+.sd-nav__list {
+    display: grid;
+    gap: .625rem;
+}
+
+/* Hover/current fill sweeps in from the left (handbook button standard) */
+.sd-nav__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.125rem;
+    overflow: hidden;
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--emerald);
+    background-color: var(--white);
+    border-radius: .75rem;
+    isolation: isolate;
+    transition: color .45s var(--ease);
+}
+
+.sd-nav__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-mid) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .45s var(--ease);
+}
+
+.sd-nav__link svg {
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform .3s var(--ease);
+}
+
+.sd-nav__link:hover,
+.sd-nav__link:focus-visible,
+.sd-nav__link.is-current {
+    color: var(--white);
+}
+
+.sd-nav__link:hover::before,
+.sd-nav__link:focus-visible::before,
+.sd-nav__link.is-current::before {
+    transform: scaleX(1);
+}
+
+.sd-nav__link:hover svg {
+    transform: translateX(3px);
+}
+
+.sd-nav__link.is-current svg {
+    color: var(--rose-gold-light);
+}
+
+/* ---------- Booking card ---------- */
+.sd-book {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.75rem;
+    overflow: hidden;
+    color: var(--white);
+    background:
+        linear-gradient(160deg, rgba(33, 81, 75, .9) 0%, rgba(33, 81, 75, .97) 100%),
+        url("../images/cta/cta-spa-suite-m.webp") center / cover no-repeat,
+        var(--emerald);
+    border-radius: 1.25rem;
+    isolation: isolate;
+}
+
+.sd-book__glow {
+    position: absolute;
+    right: -4rem;
+    bottom: -4rem;
+    z-index: -1;
+    width: 14rem;
+    height: 14rem;
+    background: radial-gradient(circle, rgba(196, 154, 108, .45) 0%, transparent 70%);
+}
+
+.sd-book__title {
+    margin-top: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.sd-book__text {
+    margin: .75rem 0 1.5rem;
+    font-size: .9375rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, .82);
+}
+
+.sd-book__phone {
+    margin-top: 1rem;
+    font-size: .8125rem;
+    letter-spacing: .1em;
+    color: var(--rose-gold-light);
+}
+
+.sd-book__phone:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Details ---------- */
+.sd-main__photo {
+    overflow: hidden;
+    border-radius: 1.25rem;
+    box-shadow: 0 30px 50px -35px rgba(33, 81, 75, .6);
+}
+
+.sd-main__photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.sd-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .625rem;
+    margin-top: 1.5rem;
+}
+
+.sd-meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .45rem .9rem;
+    font-size: .8125rem;
+    font-weight: 500;
+    color: var(--emerald);
+    background-color: var(--cream);
+    border: 1px solid rgba(196, 154, 108, .35);
+    border-radius: 999px;
+}
+
+.sd-meta svg {
+    fill: none;
+    stroke: var(--rose-gold-deep);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sd-main__title {
+    margin-top: 2rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.625rem, 4vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--emerald);
+}
+
+.sd-main__text p {
+    margin-top: .875rem;
+    font-size: .9375rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink-soft);
+}
+
+.sd-checks {
+    display: grid;
+    gap: .875rem 2rem;
+    margin-top: 1.75rem;
+    padding: 1.5rem;
+    background-color: var(--cream);
+    border-radius: 1rem;
+}
+
+.sd-checks li {
+    display: flex;
+    align-items: flex-start;
+    gap: .65rem;
+    font-size: .9375rem;
+    color: var(--emerald);
+}
+
+.sd-checks svg {
+    flex-shrink: 0;
+    width: 1.375rem;
+    height: 1.375rem;
+    padding: .2rem;
+    fill: none;
+    stroke: var(--white);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    background-color: var(--rose-gold);
+    border-radius: 50%;
+}
+
+.sd-photos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .875rem;
+    margin-top: 2rem;
+}
+
+.sd-photos__item {
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.sd-photos__item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform .8s var(--ease);
+}
+
+.sd-photos__item:hover img {
+    transform: scale(1.04);
+}
+
+/* ---------- Office hours card ---------- */
+.sd-hours {
+    padding: 1.5rem;
+    background-color: var(--white);
+    border: 1px solid rgba(196, 154, 108, .3);
+    border-radius: 1.25rem;
+}
+
+.sd-hours__list div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .7rem 0;
+    font-size: .875rem;
+    border-top: 1px solid rgba(196, 154, 108, .25);
+}
+
+.sd-hours__list dt {
+    color: var(--ink-soft);
+}
+
+.sd-hours__list dd {
+    font-weight: 500;
+    text-align: right;
+    color: var(--emerald);
+}
+
+.sd-hours__note {
+    margin-top: .75rem;
+    font-size: .8125rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+/* ---------- FAQ: sits under the two photos (service-details.js animates it) ---------- */
+.faq__list {
+    display: grid;
+    gap: .75rem;
+    margin-top: 1.25rem;
+}
+
+.faq__item {
+    background-color: var(--cream);
+    border-left: 3px solid var(--rose-gold);
+    border-radius: .75rem;
+    transition: background-color .35s var(--ease), box-shadow .35s var(--ease);
+}
+
+.faq__item.is-open {
+    background-color: var(--white);
+    box-shadow: 0 20px 40px -30px rgba(33, 81, 75, .45);
+}
+
+.faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 1.25rem;
+    font-size: .9375rem;
+    font-weight: 500;
+    color: var(--emerald);
+    list-style: none;
+    cursor: pointer;
+}
+
+.faq__question::-webkit-details-marker {
+    display: none;
+}
+
+.faq__icon {
+    flex-shrink: 0;
+    padding: .2rem;
+    fill: none;
+    stroke: var(--rose-gold-deep);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    border: 1px solid rgba(196, 154, 108, .5);
+    border-radius: 50%;
+    transition: transform .45s var(--ease), background-color .35s var(--ease), stroke .35s var(--ease);
+}
+
+.faq__item.is-open .faq__icon {
+    background-color: var(--rose-gold);
+    stroke: var(--white);
+    transform: rotate(45deg);
+}
+
+.faq__answer {
+    overflow: hidden;
+}
+
+.faq__answer p {
+    padding: 0 1.25rem 1.25rem;
+    font-size: .9375rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink-soft);
+}
+
+/* ---------- Section background: faint botanical and floating gold dots ---------- */
+.sd {
+    position: relative;
+    overflow: clip; /* hides the background art's overflow without breaking position: sticky */
+    isolation: isolate;
+}
+
+.sd__bouquet {
+    position: absolute;
+    right: -6rem;
+    bottom: calc(clamp(2.5rem, 7vw, 6rem) + 1rem); /* ends above the CTA's wave */
+    z-index: -1;
+    width: min(40rem, 90vw);
+    aspect-ratio: 3 / 2;
+    background: url("../images/patterns/holiday-bouquet-brand.svg") no-repeat center / contain;
+    opacity: .12;
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    pointer-events: none;
+}
+
+.sd .particles--gold {
+    opacity: .35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sd-nav__link,
+    .sd-nav__link::before,
+    .sd-photos__item img,
+    .faq__icon {
+        transition: none;
+    }
+}
+
+@media (min-width: 600px) {
+    .sd-checks {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 768px) {
+    .sd-aside {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Desktop: services list (sticky) on the left, details on the right */
+@media (min-width: 1100px) {
+    .sd {
+        padding-block: 5rem calc(clamp(2.5rem, 7vw, 6rem) + 5rem);
+    }
+
+    /* Desktop: two rows, each a sidebar + content pair. A sticky column is
+       limited to its own row, so the two can't slide over each other. */
+    .sd__inner {
+        gap: 3.5rem;
+    }
+
+    .sd__row {
+        display: grid;
+        grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+        gap: 3.5rem;
+        align-items: start;
+    }
+
+    /* Back to source order: sidebar left, content right */
+    .sd-aside,
+    .sd-main,
+    .sd-hours,
+    .sd .faq {
+        order: 0;
+    }
+
+    /* Stays in view while the details scroll past. service-details.js sets
+       --sticky-top so a column taller than the screen pins by its foot */
+    .sd-aside {
+        grid-template-columns: minmax(0, 1fr);
+        position: sticky;
+        top: var(--sticky-top, calc(var(--header-height) + 1.5rem));
+    }
+
+    .sd-hours {
+        position: sticky;
+        top: var(--sticky-top, calc(var(--header-height) + 1.5rem));
+    }
+
+    .sd .faq .sd-main__title {
+        margin-top: 0;
+    }
+
+    .sd-photos {
+        gap: 1.25rem;
+    }
+
+}
+

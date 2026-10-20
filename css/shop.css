@@ -1,0 +1,359 @@
+/* ==========================================================================
+   Shop page (html/shop.html), mobile first.
+   Perks strip, a sticky category filter, then products grouped by category.
+   ========================================================================== */
+
+/* ---------- Perks: a floating card lifted over the banner's wave ---------- */
+.shop-perks {
+    position: relative;
+    z-index: 2;
+    margin-top: calc(clamp(2.5rem, 7vw, 6rem) * -.6);
+    background: none;
+}
+
+.shop-perks__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1rem;
+    width: min(calc(100% - var(--gutter) * 2), var(--container));
+    padding: 1.5rem 1.25rem;
+    background-color: var(--white);
+    border: 1px solid rgba(196, 154, 108, .25);
+    border-radius: 1.5rem;
+    box-shadow: 0 30px 50px -35px rgba(33, 81, 75, .45);
+}
+
+.shop-perks li {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-size: .8125rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+}
+
+.shop-perks__icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    background-color: var(--cream);
+    border-radius: 50%;
+}
+
+.shop-perks svg {
+    fill: none;
+    stroke: var(--rose-gold-deep);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.shop-perks strong {
+    display: block;
+    font-weight: 500;
+    color: var(--emerald);
+}
+
+/* ---------- Filter: label + pills, pinned under the header while browsing ---------- */
+.shop {
+    position: relative;
+    padding-bottom: calc(clamp(2.5rem, 7vw, 6rem) + 4rem);
+    background-color: var(--ivory);
+    isolation: isolate;
+}
+
+.shop .particles--gold {
+    opacity: .25;
+}
+
+.shop-tabs {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 5;
+    padding-block: 2.25rem 1rem;
+    background: linear-gradient(180deg, var(--ivory) 75%, rgba(252, 248, 244, 0));
+}
+
+.shop-tabs__label {
+    margin-bottom: .875rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    text-align: center;
+    color: var(--emerald);
+}
+
+.shop-tabs__list {
+    display: flex;
+    gap: .5rem;
+    width: max-content;
+    max-width: 100%;
+    margin-inline: auto;
+    padding: .4rem;
+    overflow-x: auto;
+    background-color: var(--cream);
+    border-radius: 999px;
+    scrollbar-width: none;
+}
+
+.shop-tabs__list::-webkit-scrollbar {
+    display: none;
+}
+
+/* Fill sweeps in from the left (handbook button standard) */
+.shop-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .65rem 1.1rem;
+    overflow: hidden;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--emerald);
+    background: none;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    isolation: isolate;
+    transition: color .45s var(--ease);
+}
+
+.shop-tab::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--emerald);
+    border-radius: inherit;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .45s var(--ease);
+}
+
+.shop-tab span {
+    font-size: .6875rem;
+    color: var(--rose-gold-deep);
+    transition: color .45s var(--ease);
+}
+
+.shop-tab:hover,
+.shop-tab.is-active {
+    color: var(--white);
+}
+
+.shop-tab:hover::before,
+.shop-tab.is-active::before {
+    transform: scaleX(1);
+}
+
+.shop-tab:hover span,
+.shop-tab.is-active span {
+    color: var(--rose-gold-light);
+}
+
+/* ---------- Category sections ---------- */
+.shop-cat {
+    padding-top: 2.5rem;
+    scroll-margin-top: calc(var(--header-height) + 4.5rem);
+}
+
+.shop-cat[hidden] {
+    display: none;
+}
+
+.shop-cat.is-entering {
+    animation: shop-in .5s var(--ease);
+}
+
+@keyframes shop-in {
+    from { opacity: 0; transform: translateY(1rem); }
+}
+
+.shop-cat__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: .75rem 1.5rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(196, 154, 108, .3);
+}
+
+.shop-cat__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: var(--emerald);
+}
+
+.shop-cat__intro {
+    max-width: 34rem;
+    margin-top: .35rem;
+    font-size: .9375rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+}
+
+.shop-cat__count {
+    font-size: .75rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--rose-gold-deep);
+}
+
+/* ---------- Product cards ---------- */
+.products {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem 1rem;
+    list-style: none;
+}
+
+.product__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product__media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background-color: var(--cream);
+    border: 1px solid rgba(196, 154, 108, .25);
+    border-radius: 1.25rem;
+}
+
+.product__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .9s var(--ease);
+}
+
+/* "Shop Now" slides up from the foot of the photo */
+.product__cta {
+    position: absolute;
+    right: .75rem;
+    bottom: .75rem;
+    left: .75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    padding: .75rem;
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--white);
+    background-color: var(--emerald);
+    border-radius: .75rem;
+    transition: transform .45s var(--ease), opacity .45s var(--ease);
+}
+
+.product__cta svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.product__cat {
+    margin-top: 1rem;
+    font-size: .6875rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--rose-gold-deep);
+}
+
+.product__name {
+    margin-top: .3rem;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    line-height: 1.3;
+    color: var(--emerald);
+}
+
+.product__price {
+    margin-top: .35rem;
+    font-size: .9375rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+/* On hover-capable screens the button waits for hover; touch always shows it */
+@media (hover: hover) {
+    .product__cta {
+        opacity: 0;
+        transform: translateY(calc(100% + 1rem));
+    }
+
+    .product__link:hover .product__cta,
+    .product__link:focus-visible .product__cta {
+        opacity: 1;
+        transform: none;
+    }
+
+    .product__link:hover .product__media img,
+    .product__link:focus-visible .product__media img {
+        transform: scale(1.05);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shop-tab,
+    .shop-tab::before,
+    .product__media img,
+    .product__cta {
+        transition: none;
+    }
+
+    .shop-cat.is-entering {
+        animation: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .shop-perks__list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .shop-perks__list {
+        padding: 1.75rem 2rem;
+    }
+
+    .shop-perks li + li {
+        padding-left: 1.25rem;
+        border-left: 1px solid rgba(196, 154, 108, .3);
+    }
+
+    .products {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2.25rem 1.5rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .shop-tabs {
+        padding-top: 3rem;
+    }
+
+    .shop-cat {
+        padding-top: 4.5rem;
+    }
+
+    .products {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

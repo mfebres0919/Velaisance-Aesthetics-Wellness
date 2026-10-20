@@ -1,14 +1,16 @@
 /* ==========================================================================
    Smooth scrolling (every page)
    Lenis (javascript/vendor/lenis.min.js) eases mouse-wheel and trackpad
-   scrolling so the page glides instead of stepping. Touch scrolling stays
-   native (phones already have momentum). In-page links (#services etc.)
+   scrolling so the page glides instead of stepping. Not loaded on touch
+   screens (phones already have momentum). In-page links (#services etc.)
    glide too, stopping just below the sticky header. Off for reduced motion.
    The instance is shared as window.lenis so other scripts can use it.
    ========================================================================== */
 (function () {
     if (typeof Lenis === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Touch screens already scroll natively with momentum; skip Lenis there
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
     const header = document.getElementById("site-header");
     const headerOffset = () => -(header ? header.offsetHeight : 80);

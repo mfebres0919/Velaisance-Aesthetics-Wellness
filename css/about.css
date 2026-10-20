@@ -1,0 +1,509 @@
+/* ==========================================================================
+   About page (html/about.html), mobile first.
+   Story + credentials, process cards, why choose us. The banner, final CTA
+   and footer styles live in global.css.
+   ========================================================================== */
+
+/* Signature script (about page only), self-hosted */
+@font-face {
+    font-family: "Allura";
+    src: url("../fonts/allura-latin-400-normal.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ---------- Story ---------- */
+.ab-story {
+    position: relative;
+    padding-block: 4rem 4.5rem;
+    overflow: clip;
+    background-color: var(--ivory);
+    isolation: isolate;
+}
+
+.ab-story .particles--gold {
+    opacity: .3;
+}
+
+.ab-story__grid {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+}
+
+/* Portrait with an offset rose-gold frame behind it */
+.ab-story__visual {
+    position: relative;
+    width: min(100%, 30rem);
+    margin-inline: auto;
+    padding: 0 1.25rem 1.25rem 0;
+}
+
+.ab-story__frame {
+    position: absolute;
+    inset: 1.25rem 0 0 1.25rem;
+    z-index: -1;
+    border: 1px solid var(--rose-gold);
+    border-radius: 999px 999px 1.5rem 1.5rem;
+}
+
+.ab-story__portrait {
+    display: block;
+    overflow: hidden;
+    border-radius: 999px 999px 1.5rem 1.5rem;
+    box-shadow: 0 40px 60px -40px rgba(33, 81, 75, .6);
+}
+
+.ab-story__portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.ab-story__content .section-title {
+    margin-top: 1.25rem;
+    text-wrap: balance;
+}
+
+.ab-story__content .section-title em,
+.ab-process .section-title em,
+.ab-why .section-title em {
+    font-style: normal;
+    color: var(--rose-gold-deep);
+}
+
+.ab-story__text p {
+    margin-top: 1rem;
+    font-size: .9375rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink-soft);
+}
+
+/* Signature sits under the story, left aligned */
+.ab-story__sign {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1.75rem;
+}
+
+.ab-story__signature {
+    font-family: "Allura", "Snell Roundhand", "Apple Chancery", cursive;
+    font-size: clamp(2.75rem, 7vw, 3.5rem);
+    line-height: 1;
+    color: var(--rose-gold-deep);
+}
+
+.ab-story__name {
+    margin-top: .35rem;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--emerald);
+}
+
+.ab-story__name span {
+    display: block;
+    font-family: var(--font-body);
+    font-size: .6875rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--rose-gold-deep);
+}
+
+/* ---------- Credentials: a faint word behind each main heading ---------- */
+.ab-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem 1.5rem;
+    margin-top: 4.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(196, 154, 108, .35);
+}
+
+.ab-stat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.5rem;
+}
+
+.ab-stat__ghost {
+    position: absolute;
+    top: -.6rem;
+    left: -.35rem;
+    z-index: -1;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    line-height: 1;
+    color: var(--rose-gold);
+    opacity: .16;
+    pointer-events: none;
+    user-select: none;
+}
+
+.ab-stat__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+    line-height: 1.15;
+    color: var(--emerald);
+}
+
+.ab-stat__label {
+    margin-top: .4rem;
+    font-size: .8125rem;
+    letter-spacing: .06em;
+    color: var(--ink-soft);
+}
+
+/* ---------- Process ---------- */
+.ab-process {
+    position: relative;
+    padding-block: 4.5rem 5rem;
+    overflow: clip;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse 50% 60% at 85% 10%, rgba(196, 154, 108, .22) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 70% at 0% 100%, rgba(54, 119, 107, .7) 0%, transparent 70%),
+        var(--emerald);
+    isolation: isolate;
+}
+
+.ab-process__pattern {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url("../images/patterns/deco-fan.svg") center / 7rem repeat;
+    opacity: .05;
+}
+
+.ab-process__header {
+    max-width: 40rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.ab-process__header .section-title {
+    margin-top: 1.25rem;
+    color: var(--white);
+}
+
+.ab-process .section-title em {
+    color: var(--rose-gold-light);
+}
+
+.ab-process__header .section-intro {
+    margin-inline: auto;
+    color: rgba(255, 255, 255, .8);
+}
+
+.ab-steps {
+    display: grid;
+    gap: 1.25rem;
+    list-style: none;
+}
+
+/* Card: photo hidden underneath; on hover it lifts and the photo fades in under an emerald wash */
+.ab-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 22rem;
+    padding: 2rem 1.75rem;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(229, 200, 166, .3);
+    border-radius: 1.25rem;
+    outline: none;
+    isolation: isolate;
+    transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .6s var(--ease);
+}
+
+.ab-step__bg,
+.ab-step__bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ab-step__bg {
+    z-index: -2;
+    opacity: 0;
+    transition: opacity .7s var(--ease);
+}
+
+.ab-step__bg img {
+    object-fit: cover;
+    transform: scale(1.08);
+    transition: transform 1.2s var(--ease);
+}
+
+/* The wash: deepest at the foot where the text sits, lighter at the top so the photo shows */
+.ab-step::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(33, 81, 75, .35) 0%, rgba(33, 81, 75, .75) 50%, rgba(22, 56, 52, .97) 100%);
+    opacity: 0;
+    transition: opacity .7s var(--ease);
+}
+
+.ab-step__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.ab-step__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    color: var(--rose-gold-light);
+    border: 1px solid rgba(229, 200, 166, .5);
+    border-radius: 50%;
+    transition: background-color .5s var(--ease), color .5s var(--ease);
+}
+
+.ab-step__icon svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ab-step__num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(229, 200, 166, .7);
+}
+
+.ab-step__title {
+    margin-top: auto;
+    padding-top: 2.5rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.ab-step__text {
+    margin-top: .75rem;
+    font-size: .9375rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, .85);
+}
+
+.ab-step:hover,
+.ab-step:focus-visible {
+    border-color: var(--rose-gold);
+    box-shadow: 0 30px 50px -25px rgba(0, 0, 0, .55);
+    transform: translateY(-.5rem);
+}
+
+.ab-step:hover .ab-step__bg,
+.ab-step:focus-visible .ab-step__bg,
+.ab-step:hover::before,
+.ab-step:focus-visible::before {
+    opacity: 1;
+}
+
+.ab-step:hover .ab-step__bg img,
+.ab-step:focus-visible .ab-step__bg img {
+    transform: scale(1);
+}
+
+.ab-step:hover .ab-step__icon,
+.ab-step:focus-visible .ab-step__icon {
+    color: var(--emerald);
+    background-color: var(--rose-gold-light);
+}
+
+/* Touch screens can't hover, so the photos always show */
+@media (hover: none) {
+    .ab-step__bg,
+    .ab-step::before {
+        opacity: 1;
+    }
+
+    .ab-step__bg img {
+        transform: none;
+    }
+}
+
+/* ---------- Why choose us ---------- */
+.ab-why {
+    padding-block: 4.5rem calc(clamp(2.5rem, 7vw, 6rem) + 4rem);
+    background-color: var(--cream);
+}
+
+.ab-why__grid {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+}
+
+/* Collage: a wide and a narrow photo per row, swapped on the second row */
+.ab-why__gallery {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-auto-rows: clamp(10rem, 34vw, 17rem);
+    gap: .75rem;
+}
+
+.ab-why__photo {
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.ab-why__photo--wide {
+    grid-column: span 4;
+}
+
+.ab-why__photo--tall {
+    grid-column: span 3;
+}
+
+.ab-why__photo picture {
+    display: block;
+    height: 100%;
+}
+
+.ab-why__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    transition: transform .9s var(--ease);
+}
+
+.ab-why__photo:hover img {
+    transform: scale(1.05);
+}
+
+.ab-why__content .section-title {
+    margin-top: 1.25rem;
+    text-wrap: balance;
+}
+
+.ab-why__list {
+    margin-top: 2rem;
+}
+
+.ab-why__item {
+    display: flex;
+    gap: 1.25rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid rgba(196, 154, 108, .35);
+}
+
+.ab-why__icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 3.75rem;
+    height: 3.75rem;
+    color: var(--emerald);
+    background-color: var(--white);
+    border-radius: 50%;
+    box-shadow: 0 14px 30px -20px rgba(33, 81, 75, .6);
+}
+
+.ab-why__icon svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ab-why__title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 400;
+    color: var(--emerald);
+}
+
+.ab-why__text {
+    margin-top: .4rem;
+    font-size: .9375rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink-soft);
+}
+
+/* The CTA's top wave matches the cream above it */
+.ab-why + .final-cta .section-divider--cta {
+    color: var(--cream);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ab-step,
+    .ab-step__bg,
+    .ab-step__bg img,
+    .ab-step::before,
+    .ab-why__photo img {
+        transition: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .ab-stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .ab-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1100px) {
+    .ab-story {
+        padding-block: 6rem;
+    }
+
+    .ab-story__grid {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+        gap: 5rem;
+    }
+
+    .ab-story__visual {
+        margin-inline: 0;
+    }
+
+    .ab-process {
+        padding-block: 6rem 6.5rem;
+    }
+
+    .ab-steps {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .ab-step {
+        min-height: 26rem;
+    }
+
+    .ab-why {
+        padding-block: 6rem calc(clamp(2.5rem, 7vw, 6rem) + 5rem);
+    }
+
+    .ab-why__grid {
+        grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+        gap: 4.5rem;
+    }
+
+    .ab-why__gallery {
+        grid-auto-rows: clamp(14rem, 20vw, 18rem);
+    }
+}

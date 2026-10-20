@@ -1,0 +1,358 @@
+/* ==========================================================================
+   Reviews page (html/reviews.html), mobile first.
+   The written-review carousel styles live in global.css; this file is the
+   video stories grid and its popup player.
+   ========================================================================== */
+
+/* The banner's own wave leads into the reviews, so their top wave isn't needed */
+.page-banner + .reviews .section-divider--reviews {
+    display: none;
+}
+
+.page-banner + .reviews {
+    padding-top: 3.5rem;
+}
+
+/* ---------- Video stories ---------- */
+.vr {
+    position: relative;
+    padding-block: 4.5rem 3rem;
+    overflow: clip;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse 50% 60% at 90% 0%, rgba(196, 154, 108, .25) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 60% at 0% 35%, rgba(54, 119, 107, .75) 0%, transparent 70%),
+        var(--emerald); /* plain emerald along the foot so the CTA wave below matches it */
+    isolation: isolate;
+}
+
+.vr__pattern {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url("../images/patterns/deco-fan.svg") center / 7rem repeat;
+    opacity: .05;
+}
+
+.vr .particles--light {
+    opacity: .35;
+}
+
+.vr__header {
+    max-width: 40rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.vr__header .section-title {
+    margin-top: 1.25rem;
+    color: var(--white);
+}
+
+.vr__header .section-title em {
+    font-style: normal;
+    color: var(--rose-gold-light);
+}
+
+.vr__header .section-intro {
+    margin-inline: auto;
+    color: rgba(255, 255, 255, .8);
+}
+
+.vr__grid {
+    display: grid;
+    gap: 1.25rem;
+    list-style: none;
+}
+
+/* Card: the poster fills it; the quote sits on a gradient at the foot */
+.vr-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+    color: var(--white);
+    background-color: var(--emerald-mid);
+    border: 1px solid rgba(229, 200, 166, .35);
+    border-radius: 1.25rem;
+    cursor: pointer;
+    isolation: isolate;
+    transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .6s var(--ease);
+}
+
+.vr-card__poster,
+.vr-card__poster img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.vr-card__poster {
+    z-index: -2;
+}
+
+.vr-card__poster img {
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 1.2s var(--ease);
+}
+
+.vr-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(22, 56, 52, .15) 0%, rgba(22, 56, 52, .2) 40%, rgba(22, 56, 52, .92) 100%);
+    transition: opacity .6s var(--ease);
+}
+
+.vr-card__top {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+}
+
+.vr-card__length,
+.vr-card__soon {
+    padding: .3rem .7rem;
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    background-color: rgba(22, 56, 52, .6);
+    border: 1px solid rgba(229, 200, 166, .4);
+    border-radius: 999px;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.vr-card__soon {
+    display: none;
+    color: var(--rose-gold-light);
+}
+
+.vr-card.is-soon .vr-card__soon {
+    display: inline-block;
+}
+
+.vr-card.is-soon .vr-card__length {
+    display: none;
+}
+
+/* Play button with a soft pulsing ring */
+.vr-card__play {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    color: var(--emerald);
+    background: linear-gradient(135deg, var(--rose-gold-light) 0%, var(--rose-gold) 100%);
+    border-radius: 50%;
+    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .5);
+    transform: translate(-50%, -50%);
+    transition: transform .5s var(--ease);
+}
+
+.vr-card__play svg {
+    margin-left: .2rem;
+    fill: currentColor;
+}
+
+.vr-card__play::after {
+    content: "";
+    position: absolute;
+    inset: -.5rem;
+    border: 1px solid rgba(229, 200, 166, .7);
+    border-radius: 50%;
+    animation: vr-pulse 2.6s var(--ease) infinite;
+}
+
+@keyframes vr-pulse {
+    0% { opacity: .9; transform: scale(.9); }
+    100% { opacity: 0; transform: scale(1.45); }
+}
+
+.vr-card__body {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.vr-card__quote {
+    fill: var(--rose-gold);
+}
+
+.vr-card__text {
+    margin-top: .5rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.35;
+}
+
+.vr-card__name {
+    margin-top: 1rem;
+    font-size: .875rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+}
+
+.vr-card__service {
+    margin-top: .15rem;
+    font-size: .6875rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--rose-gold-light);
+}
+
+.vr-card:hover,
+.vr-card:focus-visible {
+    border-color: var(--rose-gold);
+    box-shadow: 0 30px 50px -25px rgba(0, 0, 0, .6);
+    transform: translateY(-.5rem);
+}
+
+.vr-card:hover .vr-card__poster img,
+.vr-card:focus-visible .vr-card__poster img {
+    transform: scale(1.06);
+}
+
+.vr-card:hover .vr-card__play,
+.vr-card:focus-visible .vr-card__play {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.vr-card.is-soon {
+    cursor: default;
+}
+
+.vr-card.is-soon .vr-card__play {
+    opacity: .75;
+}
+
+.vr-card.is-soon .vr-card__play::after {
+    animation: none;
+    opacity: 0;
+}
+
+/* The CTA's top wave continues the emerald of the video section */
+.vr ~ .final-cta .section-divider--cta {
+    color: var(--emerald);
+}
+
+/* ---------- Popup player ---------- */
+.vr-modal {
+    width: min(92vw, 56rem);
+    max-height: 92vh;
+    margin: auto;
+    padding: 0;
+    overflow: visible;
+    color: var(--white);
+    background: none;
+    border: 0;
+}
+
+.vr-modal::backdrop {
+    background-color: rgba(10, 30, 28, .82);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.vr-modal[open] {
+    animation: vr-in .4s var(--ease);
+}
+
+@keyframes vr-in {
+    from { opacity: 0; transform: translateY(1rem) scale(.98); }
+}
+
+.vr-modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .75rem;
+}
+
+.vr-modal__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+}
+
+.vr-modal__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: var(--white);
+    background-color: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(229, 200, 166, .5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color .3s var(--ease);
+}
+
+.vr-modal__close:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.vr-modal__close svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+.vr-modal__video {
+    display: block;
+    width: 100%;
+    max-height: calc(92vh - 4rem);
+    background-color: #000;
+    border-radius: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vr-card,
+    .vr-card__poster img,
+    .vr-card__play {
+        transition: none;
+    }
+
+    .vr-card__play::after,
+    .vr-modal[open] {
+        animation: none;
+    }
+}
+
+@media (min-width: 600px) {
+    .vr__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1100px) {
+    .vr {
+        padding-block: 6rem 3.5rem;
+    }
+
+    .vr__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+    }
+}
