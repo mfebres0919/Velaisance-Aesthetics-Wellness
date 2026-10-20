@@ -522,3 +522,38 @@ initCarousel({
     align: "center",
     loop: true,
 });
+
+/* ==========================================================================
+   Global – back to top
+   Shows after the first screen, hides near the footer's own "Back to top"
+   link, and fills its ring with how far down the page you are.
+   ========================================================================== */
+(function () {
+    const button = document.getElementById("to-top");
+    if (!button) return;
+    const footerBar = document.querySelector(".site-footer__bottom");
+    let nearFooter = false;
+    let ticking = false;
+
+    function update() {
+        ticking = false;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        button.style.setProperty("--scroll", max > 0 ? Math.min(window.scrollY / max, 1).toFixed(3) : 0);
+        button.classList.toggle("is-visible", !nearFooter && window.scrollY > window.innerHeight * 0.6);
+    }
+
+    if (footerBar && "IntersectionObserver" in window) {
+        new IntersectionObserver(([entry]) => { nearFooter = entry.isIntersecting; update(); }).observe(footerBar);
+    }
+    window.addEventListener("scroll", () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+
+    button.addEventListener("click", () => {
+        if (window.lenis) window.lenis.scrollTo(0);
+        else window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        document.querySelector(".skip-link")?.focus({ preventScroll: true });
+    });
+})();

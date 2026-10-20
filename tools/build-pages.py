@@ -602,6 +602,7 @@ def shop_body():
                 </nav>
                 <h1 class="page-banner__title" id="page-title">The Elixir Vanity</h1>
                 <p class="page-banner__tag">Curated essentials to extend your glow at home</p>
+                <a class="button button--primary page-banner__cta" href="#shop-products">Start Shopping</a>
             </div>
 {BANNER_WAVE}        </section>
 
@@ -618,7 +619,7 @@ def shop_body():
         <!-- ============ Category filter (shop.js) + products grouped by category ============ -->
         <div class="shop">
             <span class="particles particles--gold" aria-hidden="true"></span>
-            <nav class="shop-tabs" aria-label="Filter products by category">
+            <nav class="shop-tabs" id="shop-products" aria-label="Filter products by category">
                 <div class="container">
                     <p class="shop-tabs__label">Shop by Category</p>
                     <ul class="shop-tabs__list">{tabs}
