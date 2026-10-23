@@ -1385,3 +1385,14 @@
         margin-inline: 2.5rem 0;
     }
 }
+
+/* Credentials inside the About heading — smaller, so the name stays the focus */
+.name-creds {
+  font-family: var(--font-body, inherit);
+  font-size: .42em;
+  font-weight: 600;
+  letter-spacing: .08em;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: var(--rose-gold-light);   /* 5.6:1 on the emerald About background */
+}
