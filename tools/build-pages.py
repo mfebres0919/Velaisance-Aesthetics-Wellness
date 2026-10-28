@@ -48,7 +48,7 @@ SERVICES = [
         ],
         "benefits": ["Injectables for softened lines", "Microneedling for texture and tone", "Advanced skin rejuvenation", "Personalized treatment plans", "Medical-grade products", "Natural, refined results", "Nurse practitioner-led care", "Follow-up support after every visit"],
         "expect_title": "What to Expect",
-        "expect": "Your first visit begins with a consultation about your goals and medical history. Dr. Coleman will recommend a plan, explain each step, and make sure you feel comfortable before any treatment begins.",
+        "expect": "Your first visit begins with a consultation about your goals and medical history. Dr. Coleman, DNP, will recommend a plan, explain each step, and make sure you feel comfortable before any treatment begins.",
         "faqs": [
             ("Is a consultation required?", "Yes. Every new client starts with a consultation so we can design a safe plan around your goals and health history."),
             ("How long do results last?", "It depends on the treatment. Injectables typically last several months, while skin treatments build results over a series of visits."),
@@ -106,7 +106,7 @@ SERVICES = [
         "faqs": [
             ("Does an IV infusion hurt?", "Most clients feel only a quick pinch when the IV is placed, then nothing but comfort."),
             ("How soon will I feel the benefits?", "Many clients feel refreshed within hours, with full benefits over the following day."),
-            ("Is IV therapy safe?", "Yes, when screened and administered by a qualified clinician. Every infusion is overseen by Dr. Coleman."),
+            ("Is IV therapy safe?", "Yes, when screened and administered by a qualified clinician. Every infusion is overseen by Dr. Coleman, DNP."),
             ("Can I get IV therapy at home?", "Yes. IV hydration is available through the Gleaux Concierge in your home, hotel, or event."),
         ],
     },
@@ -118,7 +118,7 @@ SERVICES = [
             "The Elixir Vanity is our curated collection of professional-grade skincare and wellness essentials. Every product is selected to support your treatments and keep your results going between visits.",
             "Not sure where to start? We are happy to recommend a routine based on your skin and goals.",
         ],
-        "benefits": ["Professional-grade skincare", "Wellness essentials", "Products chosen by Dr. Coleman", "Routines for every skin type", "Support between treatments", "Gift-ready selections", "Simple, effective routines", "Personal recommendations"],
+        "benefits": ["Professional-grade skincare", "Wellness essentials", "Products chosen by Dr. Coleman, DNP", "Routines for every skin type", "Support between treatments", "Gift-ready selections", "Simple, effective routines", "Personal recommendations"],
         "expect_title": "Finding Your Routine",
         "expect": "Shop online or ask during your next visit. We will match products to your skin and treatment plan so every step of your routine works together.",
         "faqs": [
@@ -167,7 +167,7 @@ def sidebar(active):
         cls = "sd-nav__link is-current" if on else "sd-nav__link"
         cur = ' aria-current="page"' if on else ""
         links += f'\n                        <li><a class="{cls}" href="service-{s["slug"]}.html"{cur}>{s["name"]}{CHEVRON}</a></li>'
-    return f'''<aside class="sd-aside">
+    return f'''<div class="sd-aside">
                     <nav class="sd-nav" aria-label="All services">
                         <p class="sd-nav__title">Our Services</p>
                         <ul class="sd-nav__list">{links}
@@ -178,11 +178,11 @@ def sidebar(active):
                         <span class="sd-book__glow" aria-hidden="true"></span>
                         <p class="badge"><span class="badge__dot" aria-hidden="true"></span>Begin Your Glow</p>
                         <h2 class="sd-book__title">Ready for Expert, Personalized Care?</h2>
-                        <p class="sd-book__text">Book a consultation and Dr. Coleman will design a plan around your goals.</p>
+                        <p class="sd-book__text">Book a consultation and Dr. Coleman, DNP, will design a plan around your goals.</p>
                         <a class="button button--primary" href="{BOOK}" target="_blank" rel="noopener" data-booking>Book a Consultation</a>
                         <a class="sd-book__phone" href="tel:+16282528115">or call 628-252-8115</a>
                     </div>
-                </aside>'''
+                </div>'''
 
 
 def page_body(s):
@@ -243,7 +243,7 @@ def page_body(s):
 
                     <div class="sd-photos">
                         <div class="sd-photos__item">
-                            {picture("services/details/detail-consult", "Dr. Coleman consulting with a client", 560, 747)}
+                            {picture("services/details/detail-consult", "Dr. Coleman, DNP, consulting with a client", 560, 747)}
                         </div>
                         <div class="sd-photos__item">
                             {picture("services/details/detail-glow", "A client relaxing after a treatment", 560, 747)}
@@ -303,7 +303,7 @@ STATS = [  # (faint word behind, main heading, label)
 
 PROCESS = [
     ("consult", "consultation", "Consultation", "A relaxed conversation about your goals, health history, and what you want to feel when you look in the mirror."),
-    ("plan", "plan", "Your Personal Plan", "Dr. Coleman designs a plan around your skin, body, and schedule, with clear pricing before anything begins."),
+    ("plan", "plan", "Your Personal Plan", "Dr. Coleman, DNP, designs a plan around your skin, body, and schedule, with clear pricing before anything begins."),
     ("treat", "treatment", "Treatment &amp; Ritual", "Clinical-grade care delivered in a calm, private space, or wherever you are with the Gleaux Concierge."),
     ("glow", "glow", "Aftercare &amp; Glow", "Follow-up support, home-care guidance, and check-ins so your results keep glowing long after you leave."),
 ]
@@ -534,7 +534,7 @@ def reviews_body(reviews_section):
 # ---------------------------------------------------------------------------
 STORE = "https://velaisance-vanity.store.prospyrmed.com/"
 SHOP = [
-    ("skincare", "Skincare", "Professional-grade formulas chosen by Dr. Coleman to extend your results at home.", [
+    ("skincare", "Skincare", "Professional-grade formulas chosen by Dr. Coleman, DNP, to extend your results at home.", [
         ("Gentle Renewal Cleanser", "$38"), ("Hydrating Glow Serum", "$64"), ("Vitamin C Brightening Serum", "$72"),
         ("Barrier Repair Moisturizer", "$58"), ("Daily Mineral SPF 40", "$46"), ("Overnight Recovery Cream", "$68"),
         ("Soothing Eye Cream", "$52"), ("Exfoliating Enzyme Mask", "$48")]),
@@ -609,7 +609,7 @@ def shop_body():
         <!-- ============ Shop perks ============ -->
         <section class="shop-perks" aria-label="Why shop with us">
             <ul class="container shop-perks__list">
-                <li><span class="shop-perks__icon">{icon("shield", 24)}</span><span><strong>Chosen by Dr. Coleman</strong>Professional-grade picks</span></li>
+                <li><span class="shop-perks__icon">{icon("shield", 24)}</span><span><strong>Chosen by Dr. Coleman, DNP</strong>Professional-grade picks</span></li>
                 <li><span class="shop-perks__icon">{icon("heart", 24)}</span><span><strong>Gentle &amp; Clean</strong>Kind to every skin type</span></li>
                 <li><span class="shop-perks__icon">{icon("home", 24)}</span><span><strong>Local Pickup</strong>Collect at the Walnut Creek studio</span></li>
                 <li><span class="shop-perks__icon">{icon("glow", 24)}</span><span><strong>Gift Ready</strong>Beautifully packaged</span></li>

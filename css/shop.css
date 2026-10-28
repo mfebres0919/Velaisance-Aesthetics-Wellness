@@ -205,7 +205,7 @@
     font-size: .75rem;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: var(--rose-gold-deep);
+    color: var(--rose-gold-text);
 }
 
 /* ---------- Product cards ---------- */
@@ -274,7 +274,7 @@
     font-size: .6875rem;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--rose-gold-deep);
+    color: var(--rose-gold-text);
 }
 
 .product__name {

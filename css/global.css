@@ -39,6 +39,7 @@
     --rose-gold: #C49A6C;
     --rose-gold-light: #E5C8A6;
     --rose-gold-deep: #B88D5B;
+    --rose-gold-text: #86613A; /* deeper gold for small text on cream (5.3:1 contrast) */
 
     /* Emerald palette (brand) */
     --emerald: #21514B;
