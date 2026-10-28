@@ -185,6 +185,17 @@ def sidebar(active):
                 </div>'''
 
 
+# Second detail photo on each service page (detail-glow is the fallback)
+DETAIL_PHOTO = {
+    "gleaux-concierge": ("services/details/detail-gleaux", "A guest in a robe relaxing with tea in the lounge"),
+    "elixir-vanity": ("services/details/detail-elixir", "A client receiving a hydrating facial mask"),
+    "wellness": ("services/details/detail-wellness", "A guest relaxing on a treatment bed before her massage"),
+    "iv-hydration": ("services/details/detail-iv", "A guest in a robe enjoying tea in the lounge"),
+    "skinsoul": ("services/details/detail-skinsoul", "A guest in a towel relaxing in the spa lounge"),
+    "med-spa": ("services/details/detail-med-spa", "A guest in a robe reading in the lounge"),
+}
+
+
 def page_body(s):
     benefits = "".join(f"\n                            <li>{CHECK}<span>{b}</span></li>" for b in s["benefits"])
     intro = "".join(f"\n                        <p>{p}</p>" for p in s["intro"])
@@ -246,7 +257,7 @@ def page_body(s):
                             {picture("services/details/detail-consult", "Dr. Coleman, DNP, consulting with a client", 560, 747)}
                         </div>
                         <div class="sd-photos__item">
-                            {picture("services/details/detail-glow", "A client relaxing after a treatment", 560, 747)}
+                            {picture(*DETAIL_PHOTO.get(s["slug"], ("services/details/detail-glow", "A client relaxing after a treatment")), 560, 747)}
                         </div>
                     </div>
                 </article>
