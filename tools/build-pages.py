@@ -343,9 +343,9 @@ def about_body():
                                 <p class="ab-why__text">{text}</p>
                             </div>
                         </li>''' for ic, title, text in WHY)
-    tiles = [("why-treatment-room", "A Velaisance treatment room with a velvet-draped bed", 640, 480, "wide"),
+    tiles = [("why-treatment-room", "A guest relaxing in a towel in the Velaisance sauna", 640, 480, "wide"),
              ("why-arrival", "A client relaxing in a robe in the Velaisance lounge", 480, 640, "tall"),
-             ("why-iv-suite", "An emerald velvet IV hydration chair", 480, 640, "tall"),
+             ("why-iv-suite", "A guest in a robe sipping tea in the Velaisance lounge", 480, 640, "tall"),
              ("why-iv-lounge", "A client reading during an IV hydration session", 640, 480, "wide")]
     gallery = "".join(f'''
                     <div class="ab-why__photo ab-why__photo--{shape}">
