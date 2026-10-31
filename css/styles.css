@@ -725,19 +725,46 @@
     transition: color .5s var(--ease);
 }
 
-.service-card__link {
+/* Book Now + Explore, side by side at the bottom of the card */
+.service-card__actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
+    border-top: 1px solid rgba(196, 154, 108, .35);
+    transition: border-color .5s var(--ease);
+}
+
+/* Sits above the card-wide Explore link so it can be clicked on its own */
+.service-card__book {
+    z-index: 2;
+    flex-shrink: 0;
+    min-height: 2.75rem;
+    padding: .7rem 1rem;
+    font-size: .75rem;
+    letter-spacing: .12em;
+    white-space: nowrap;
+}
+
+/* Smallest phones: drop the arrow circle so both fit on one row */
+@media (max-width: 419px) {
+    .service-card__actions { gap: .5rem; }
+    .service-card__actions .service-card__book { padding-inline: .8rem; }
+    .service-card__actions .service-card__arrow { display: none; }
+}
+
+.service-card__link {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
     font-size: .8125rem;
     font-weight: 500;
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--emerald-night);
-    border-top: 1px solid rgba(196, 154, 108, .35);
-    transition: color .5s var(--ease), border-color .5s var(--ease);
+    transition: color .5s var(--ease);
 }
 
 /* Whole card is clickable */
@@ -815,8 +842,8 @@
     color: rgba(255, 255, 255, .85);
 }
 
-.service-card.is-active .service-card__link,
-.service-card:focus-within .service-card__link {
+.service-card.is-active .service-card__actions,
+.service-card:focus-within .service-card__actions {
     border-color: rgba(229, 200, 166, .35);
 }
 

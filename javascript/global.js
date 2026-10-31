@@ -212,13 +212,22 @@
 
     const frame = modal.querySelector(".booking-modal__frame");
     const closeButton = modal.querySelector(".booking-modal__close");
+    const newTab = modal.querySelector(".booking-modal__newtab");
     let lastTrigger = null;
 
     frame.addEventListener("load", () => modal.classList.add("is-loaded"));
 
+    // Each link's own href is loaded, so a T-Shape 2 button opens the
+    // T-Shape 2 booking page and every other button opens the main one
     const open = (trigger) => {
         lastTrigger = trigger;
-        if (!frame.src) frame.src = frame.dataset.src;
+        const url = trigger.getAttribute("href") || frame.dataset.src;
+        if (frame.dataset.current !== url) {
+            modal.classList.remove("is-loaded");
+            frame.src = url;
+            frame.dataset.current = url;
+            if (newTab) newTab.href = url;
+        }
         modal.showModal();
         document.documentElement.classList.add("is-booking-open");
         if (window.lenis) window.lenis.stop();

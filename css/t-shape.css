@@ -1,0 +1,363 @@
+/* ==========================================================================
+   Velaisance – T-Shape 2 booking page (t-shape/index.html → /t-shape)
+   Hero, a short overview, then the appointment options. Every "Book"
+   button opens the shared Prospyr booking modal (global.js) on the
+   T-Shape 2 booking link. Header, footer, buttons and badge: global.css.
+   ========================================================================== */
+
+/* ---------- Hero (emerald, like the inner-page banners) ---------- */
+.ts-hero {
+    position: relative;
+    padding-block: 3.5rem calc(3.5rem + clamp(2.5rem, 7vw, 6rem));
+    overflow: hidden;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse 55% 90% at 85% 0%, rgba(196, 154, 108, .28) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 0% 100%, rgba(54, 119, 107, .7) 0%, transparent 70%),
+        var(--emerald);
+    isolation: isolate;
+}
+
+.ts-hero__inner {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+}
+
+.ts-hero__title {
+    margin-top: 1.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 9vw, 4.75rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+}
+
+.ts-hero__title em {
+    display: block;
+    font-style: normal;
+    font-size: .62em;
+    color: var(--rose-gold-light);
+}
+
+.ts-hero__lead {
+    max-width: 34rem;
+    margin-top: 1.5rem;
+    font-size: .9375rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, .9);
+}
+
+.ts-hero__actions {
+    display: grid;
+    gap: .75rem;
+    margin-top: 2rem;
+}
+
+.ts-hero__points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem 1.75rem;
+    margin-top: 2rem;
+    padding: 0;
+    list-style: none;
+}
+
+.ts-hero__points li {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.ts-hero__points svg,
+.ts-checks svg {
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ts-hero__points svg { color: var(--rose-gold-light); }
+
+/* Device photo in an arch with a rose-gold outline */
+.ts-hero__visual {
+    position: relative;
+    width: min(100%, 22rem);
+    margin-inline: auto;
+}
+
+.ts-hero__frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    padding: 1.5rem;
+    border-radius: 50% 50% 1.5rem 1.5rem / 38% 38% 1.5rem 1.5rem;
+    background: var(--white);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .55);
+    overflow: hidden;
+}
+
+.ts-hero__frame::after {   /* thin gold ring just inside the edge */
+    content: "";
+    position: absolute;
+    inset: .6rem;
+    border: 1px solid var(--rose-gold);
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.ts-hero__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ts-hero__chip {
+    position: absolute;
+    left: -.75rem;
+    bottom: 2rem;
+    display: grid;
+    padding: .9rem 1.25rem;
+    background: var(--ivory);
+    color: var(--emerald);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1;
+    box-shadow: 0 18px 40px -20px rgba(0, 0, 0, .5);
+}
+
+.ts-hero__chip span,
+.ts-hero__chip small {
+    font-family: var(--font-body);
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--rose-gold-text);
+}
+
+.ts-hero__chip span { margin-bottom: .35rem; }
+.ts-hero__chip small { margin-top: .4rem; }
+
+@media (min-width: 480px) {
+    .ts-hero__actions { display: flex; flex-wrap: wrap; }
+}
+
+@media (min-width: 1024px) {
+    .ts-hero {
+        padding-block: 5.5rem calc(5rem + clamp(2.5rem, 7vw, 6rem));
+    }
+
+    .ts-hero__inner {
+        grid-template-columns: 1.15fr 1fr;
+        gap: 4rem;
+    }
+
+    .ts-hero__visual { width: min(100%, 26rem); }
+    .ts-hero__chip { left: -2.5rem; }
+}
+
+/* ---------- Shared on the light sections ---------- */
+.ts-eyebrow {
+    margin-bottom: 1rem;
+    color: var(--rose-gold-text);
+}
+
+.ts-about .section-title em,
+.ts-book .section-title em {
+    font-style: normal;
+    color: var(--rose-gold-text);
+}
+
+/* ---------- Overview ---------- */
+.ts-about {
+    padding-block: 3.5rem 4rem;
+    background-color: var(--ivory);
+}
+
+.ts-about__inner {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.ts-checks {
+    display: grid;
+    gap: .75rem;
+    margin-top: 1.75rem;
+    padding: 0;
+    list-style: none;
+}
+
+.ts-checks li {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-size: .9375rem;
+    color: var(--emerald);
+}
+
+.ts-checks svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: .35rem;
+    border-radius: 50%;
+    background: var(--emerald-mist);
+    color: var(--emerald);
+}
+
+@media (min-width: 600px) {
+    .ts-checks { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1024px) {
+    .ts-about { padding-block: 5rem; }
+
+    .ts-about__inner {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 4rem;
+        align-items: start;
+    }
+}
+
+/* ---------- Booking options ---------- */
+.ts-book {
+    padding-block: 4rem 5rem;
+    background-color: var(--cream);
+    scroll-margin-top: var(--header-height);
+}
+
+.ts-book__head {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.ts-book__head .section-intro { margin-top: 1rem; }
+
+.ts-book__group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0 1.25rem;
+    font-family: var(--font-display);
+    font-size: .8125rem;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--rose-gold-text);
+}
+
+.ts-book__group::after {   /* thin line to the right of the label */
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(196, 154, 108, .45);
+}
+
+.ts-options {
+    display: grid;
+    gap: 1.25rem;
+    padding: 0;
+    list-style: none;
+}
+
+.ts-option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 1.5rem 1.5rem;
+    background: var(--white);
+    border: 1px solid rgba(196, 154, 108, .35);
+    color: var(--emerald);
+}
+
+.ts-option__flag {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+    padding: .35rem .8rem;
+    background: var(--rose-gold-light);
+    color: var(--emerald);
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.ts-option__name {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.ts-option__price {
+    margin-top: .5rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--rose-gold-text);
+}
+
+.ts-option__text {
+    margin-top: .75rem;
+    margin-bottom: 1.5rem;
+    font-size: .875rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink-soft);
+}
+
+.ts-option__btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+/* The launch special: emerald card */
+.ts-option--feature {
+    background:
+        radial-gradient(ellipse 70% 90% at 100% 0%, rgba(196, 154, 108, .3) 0%, transparent 70%),
+        var(--emerald);
+    border-color: var(--emerald);
+    color: var(--white);
+}
+
+.ts-option--feature .ts-option__price { color: var(--rose-gold-light); }
+.ts-option--feature .ts-option__text { color: rgba(255, 255, 255, .88); }
+
+.ts-fineprint {
+    max-width: 52rem;
+    margin: 2.5rem auto 0;
+    font-size: .75rem;
+    line-height: 1.7;
+    text-align: center;
+    color: var(--ink-soft);
+}
+
+.ts-book__call {
+    margin-top: 1.25rem;
+    font-size: .9375rem;
+    text-align: center;
+    color: var(--emerald);
+}
+
+.ts-book__call a {
+    color: var(--emerald);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--rose-gold);
+    text-underline-offset: .25em;
+}
+
+@media (min-width: 700px) {
+    .ts-options { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1100px) {
+    .ts-book { padding-block: 5rem 6rem; }
+    .ts-options:not(.ts-options--two) { grid-template-columns: repeat(4, 1fr); }
+}

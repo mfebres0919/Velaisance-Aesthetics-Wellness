@@ -575,3 +575,41 @@ p.gc-card__label { margin-top: auto; padding-top: .9rem; border-top: 1px solid r
 }
 .gc-card__more svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s var(--ease); }
 .gc-card__more:hover svg { transform: translateX(3px); }
+
+/* ==========================================================================
+   Booking buttons inside the page (banner button uses .page-banner__cta)
+   ========================================================================== */
+.page-banner__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+}
+
+/* Under the benefits list */
+.sd-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1.5rem;
+  margin-top: 2rem;
+}
+.sd-cta__phone {
+  font-size: .9375rem;
+  font-weight: 500;
+  color: var(--emerald);
+  text-decoration: underline;
+  text-decoration-color: var(--rose-gold);
+  text-underline-offset: 4px;
+}
+
+/* Bottom of each treatment card */
+.gc-card__book {
+  align-self: flex-start;
+  min-height: 2.75rem;
+  margin-top: .5rem;
+  padding: .7rem 1.4rem;
+  font-size: .75rem;
+}
+.gc-card__ideal + .gc-card__book,
+.gc-card__list + .gc-card__book { margin-top: 1rem; }
