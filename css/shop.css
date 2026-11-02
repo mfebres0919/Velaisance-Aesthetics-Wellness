@@ -232,6 +232,11 @@
     border-radius: 1.25rem;
 }
 
+.product__media picture {
+    display: block;
+    height: 100%;
+}
+
 .product__media img {
     display: block;
     width: 100%;
